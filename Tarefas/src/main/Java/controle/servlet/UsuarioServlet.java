@@ -1,3 +1,4 @@
+package controle.servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -8,10 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(urlPatterns = { "/cadastrar", "/entrar", "/sair" })
+import modelo.dao.usuario.UsuarioDAO;
+import modelo.dao.usuario.UsuarioDAOImpl;
+import modelo.entidade.usuario.Usuario;
+
+//@WebServlet(urlPatterns = { "/cadastrar", "/entrar", "/sair" })
+@WebServlet ("/")
 public class UsuarioServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 	private UsuarioDAO dao;
 
 	public void init() {
@@ -36,13 +42,13 @@ public class UsuarioServlet extends HttpServlet {
 				cadastrarUsuario(request, response);
 				break;
 
-			case "/entrar":
+			/*case "/entrar":
 				conectarUsuario(request, response);
 				break;
 
 			case "/sair":
 				desconectarUsuario(request, response);
-				break;
+				*/
 
 			}
 
@@ -64,7 +70,7 @@ public class UsuarioServlet extends HttpServlet {
 		response.sendRedirect("/entrar");
 	}
 
-	private void conectarUsuario(HttpServletRequest request, HttpServletResponse response)
+	/*private void conectarUsuario(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException, IOException, SQLException {
 			
 		String email = request.getParameter("email");
@@ -96,5 +102,5 @@ public class UsuarioServlet extends HttpServlet {
 	
 		response.sendRedirect("/login");
 	}
-
+*/
 }
