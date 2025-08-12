@@ -12,7 +12,7 @@ import modelo.entidade.Endereco;
 import modelo.entidade.Estabelecimento;
 import modelo.entidade.Foto;
 import modelo.entidade.TipoEstabelecimento;
-import modelo.factory.ConexaoFactory;
+import modelo.factory.conexao.ConexaoFactory;
 
 public class EnderecoDAOImpl implements EnderecoDAO{
 

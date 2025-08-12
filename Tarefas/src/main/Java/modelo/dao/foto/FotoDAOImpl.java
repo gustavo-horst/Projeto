@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.entidade.Foto;
-import modelo.factory.ConexaoFactory;
+import modelo.factory.conexao.ConexaoFactory;
 
 
 public class FotoDAOImpl implements FotoDAO{

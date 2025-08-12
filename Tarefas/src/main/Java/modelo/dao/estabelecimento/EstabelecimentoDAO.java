@@ -29,8 +29,8 @@ public interface EstabelecimentoDAO {
 		void editarHorarioEstabelecimento(Estabelecimento estabelecimento, String novoHorario);
 		
 		void editarFotoEstabelecimento(Estabelecimento estabelecimento, Foto novasFoto);
-
-		List<Estabelecimento> recuperarEstabelecimentoUnico();
+		
+		Estabelecimento recuperarEstabelecimentoUnico(Long id);
 		
 		List<Estabelecimento> recuperarEstabelecimentos();
 

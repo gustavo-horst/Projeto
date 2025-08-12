@@ -16,7 +16,12 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	private Connection conexao;
 
 	public UsuarioDAOImpl() {
-		  this.conexao = ConexaoFactory.getConnection();
+		  try {
+			this.conexao = ConexaoFactory.getConexao();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		    if (this.conexao == null) {
 		        throw new RuntimeException("Falha ao conectar com o banco de dados.");
 		    }

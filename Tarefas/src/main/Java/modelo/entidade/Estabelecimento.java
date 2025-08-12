@@ -47,7 +47,12 @@ public class Estabelecimento {
         setHorarioFuncionamento(horarioFuncionamento);
     }
 
-    public Long getId() {
+    public Estabelecimento() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Long getId() {
 
         return id;
     }

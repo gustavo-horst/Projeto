@@ -13,7 +13,7 @@ import modelo.entidade.Endereco;
 import modelo.entidade.Estabelecimento;
 import modelo.entidade.Foto;
 import modelo.entidade.TipoEstabelecimento;
-import modelo.factory.ConexaoFactory;
+import modelo.factory.conexao.ConexaoFactory;
 
 public class EstabelecimentoDAOImpl implements EstabelecimentoDAO{
 	
@@ -188,11 +188,36 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO{
 	}
 
 	@Override
-	public List<Estabelecimento> recuperarEstabelecimentoUnico(){
-	
-		ArrayList<Estabelecimento>estabelecimentoRecuperado = new ArrayList<>();
-	
-		return estabelecimentoRecuperado;
+	public Estabelecimento recuperarEstabelecimentoUnico(Long id) {
+	    Estabelecimento estabelecimento = null;
+	    String sql = "SELECT * FROM estabelecimento WHERE id_estabelecimento = ?";
+
+	    PreparedStatement stmt = null;
+	    try  {
+			stmt = conexao.prepareStatement(sql);
+
+	        stmt.setLong(1, id);
+	        ResultSet rs = stmt.executeQuery();
+
+
+	        if (rs.next()) {
+	            estabelecimento = new Estabelecimento();
+
+	            estabelecimento.setId(rs.getLong("id_estabelecimento"));
+	            estabelecimento.setNome(rs.getString("nome_estabelecimento"));
+	            String tipoStr = rs.getString("tipo_estabelecimento");
+	            TipoEstabelecimento tipo = TipoEstabelecimento.valueOf(tipoStr.toUpperCase());
+	            estabelecimento.setTipoEstabelecimento(tipo);
+
+	            estabelecimento.setCnpj(rs.getString("cnpj_estabelecimento"));
+	            estabelecimento.setEmail(rs.getString("email_estabelecimento"));
+	            estabelecimento.setTelefone(rs.getString("telefone_estabelecimento"));
+	        }
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return estabelecimento;
 	}
 	
 	

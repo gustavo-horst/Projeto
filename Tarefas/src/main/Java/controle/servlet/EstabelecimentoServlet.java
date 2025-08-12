@@ -17,7 +17,7 @@ import modelo.entidade.Endereco;
 import modelo.entidade.Estabelecimento;
 import modelo.entidade.TipoEstabelecimento;
 
-@WebServlet("/")
+@WebServlet("/PerfilEstabelecimento")
 public class EstabelecimentoServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -43,11 +43,15 @@ public class EstabelecimentoServlet extends HttpServlet {
 			
 			switch (action) {
 				
-			case "/inserir":
+			/*case "/inserir":
 				inserirEstabelecimento(request, response);
 				break;
-				
-				
+			*/	
+			
+			case "/PerfilEstabelecimento":
+                exibirPerfil(request, response);
+                break;
+                
 			//default:
 				//listarContatos(request, response);
 				//break;
@@ -89,4 +93,15 @@ public class EstabelecimentoServlet extends HttpServlet {
 		response.sendRedirect("listar");
 	}
 
+	private void exibirPerfil(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+	   
+		String idString = request.getParameter("id");
+	    Long id = Long.parseLong(idString);
+
+	    Estabelecimento estabelecimento = daoEstabelecimento.recuperarEstabelecimentoUnico(id);
+
+
+	    request.setAttribute("estabelecimento", estabelecimento);
+	    request.getRequestDispatcher("/PerfilEstabelecimento.jsp").forward(request, response);
+	}
 }

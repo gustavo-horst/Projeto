@@ -69,6 +69,10 @@ public class Usuario {
 
    
 
+	public Usuario() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getSenha() {
         return senha;
     }
