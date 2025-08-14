@@ -1,3 +1,4 @@
+package controle.servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -8,10 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.dao.usuario.UsuarioDAO;
+import modelo.dao.usuario.UsuarioDAOImpl;
+import modelo.entidade.usuario.Usuario;
+
 @WebServlet(urlPatterns = { "/cadastrar", "/entrar", "/sair" })
 public class UsuarioServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 	private UsuarioDAO dao;
 
 	public void init() {
@@ -42,7 +47,7 @@ public class UsuarioServlet extends HttpServlet {
 
 			case "/sair":
 				desconectarUsuario(request, response);
-				break;
+				
 
 			}
 
@@ -75,13 +80,14 @@ public class UsuarioServlet extends HttpServlet {
 		if(usuario != null) {
 		HttpSession session = request.getSession();
 		session.setAttribute("usuarioLogado", usuario);
-		response.sendRedirect("/");
+		System.out.println("usuario Logado");
 		}
 			
 		else {
 		request.setAttribute("erro", "Email ou senha incorretos");
-		request.getRequestDispatcher("/login").forward(request, response); 
+		request.getRequestDispatcher("/entrar.jsp").forward(request, response); 
 		}
+
 	
 	}
 
