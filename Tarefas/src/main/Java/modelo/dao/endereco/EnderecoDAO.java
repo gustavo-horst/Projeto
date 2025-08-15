@@ -12,7 +12,7 @@ public interface EnderecoDAO {
 
 	void editarEndereco(Endereco endereco);
 
-	List<Endereco> recuperarEndereco();
+	Endereco recuperarEndereco(Long id);
 	
 	List<Endereco> recuperarEnderecos();
 

@@ -124,11 +124,33 @@ private Connection conexao;
 	}
 
 	@Override
-	public List<Endereco> recuperarEndereco(){
+	public Endereco recuperarEndereco(Long id){
 	
-		ArrayList<Endereco>enderecoRecuperado = new ArrayList<>();
-	
-		return enderecoRecuperado;
+		Endereco endereco = null;
+		String sql = "SELECT * FROM estabelecimento e INNER JOIN endereco en ON e.id_endereco = en.id_endereco WHERE id_estabelecimento = ?"; 
+		PreparedStatement stmt = null;
+		try {
+			stmt = conexao.prepareStatement(sql);
+	        stmt.setLong(1, id);
+			ResultSet rs = stmt.executeQuery();
+			
+			
+			if(rs.next()) {
+				endereco = new Endereco();
+				
+				endereco.setId(rs.getLong("id_endereco"));
+				endereco.setEstado(rs.getString("estado_endereco"));
+				endereco.setCidade(rs.getString("cidade_endereco"));
+				endereco.setBairro(rs.getString("bairro_endereco"));
+				endereco.setCep(rs.getString("cep_endereco"));
+				endereco.setLogradouro(rs.getString("logradouro_endereco"));
+			}
+			
+		}catch (SQLException e){
+			e.printStackTrace();
+			
+		}
+		return endereco;
 	}
 	
 	@Override
@@ -139,5 +161,7 @@ private Connection conexao;
 		
 		return enderecosRecuperados;
 	}
+	
+	
 	
 }
