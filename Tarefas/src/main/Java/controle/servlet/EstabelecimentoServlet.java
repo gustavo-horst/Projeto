@@ -99,9 +99,11 @@ public class EstabelecimentoServlet extends HttpServlet {
 	    Long id = Long.parseLong(idString);
 
 	    Estabelecimento estabelecimento = daoEstabelecimento.recuperarEstabelecimentoUnico(id);
+	    Endereco endereco = daoEndereco.recuperarEndereco(id);
 
-
+	    request.setAttribute("endereco", endereco);
 	    request.setAttribute("estabelecimento", estabelecimento);
 	    request.getRequestDispatcher("/PerfilEstabelecimento.jsp").forward(request, response);
 	}
+
 }

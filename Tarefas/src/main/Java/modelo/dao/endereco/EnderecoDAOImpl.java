@@ -48,7 +48,7 @@ private Connection conexao;
 			insertEndereco.setString(1, endereco.getEstado());
 			insertEndereco.setString(2, endereco.getCidade()); // setString?
 			insertEndereco.setString(3, endereco.getBairro());
-			insertEndereco.setInt(4, endereco.getCep());
+			insertEndereco.setString(4, endereco.getCep());
 			insertEndereco.setString(5, endereco.getLogradouro());
 
 			insertEndereco.execute();

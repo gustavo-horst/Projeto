@@ -41,6 +41,10 @@ public class UsuarioServlet extends HttpServlet {
 				cadastrarUsuario(request, response);
 				break;
 
+			case "/paginaentrar":
+			    request.getRequestDispatcher("/entrar.jsp").forward(request, response);
+			    break;
+			    
 			case "/entrar":
 				conectarUsuario(request, response);
 				break;
@@ -80,6 +84,7 @@ public class UsuarioServlet extends HttpServlet {
 		if(usuario != null) {
 		HttpSession session = request.getSession();
 		session.setAttribute("usuarioLogado", usuario);
+		request.getRequestDispatcher("/perfilEstabelecimento.jsp").forward(request, response);
 		System.out.println("usuario Logado");
 		}
 			
@@ -87,6 +92,8 @@ public class UsuarioServlet extends HttpServlet {
 		request.setAttribute("erro", "Email ou senha incorretos");
 		request.getRequestDispatcher("/entrar.jsp").forward(request, response); 
 		}
+		System.out.println("Email recebido: " + request.getParameter("email"));
+		System.out.println("Senha recebida: " + request.getParameter("senha"));
 
 	
 	}
